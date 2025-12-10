@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星巴克商品型錄</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .product-card:hover .product-img-hover {
+            opacity: 1;
+        }
+        
+        /* 輪播樣式 */
+        .scenario-slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .scenario-slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d5db;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .dot.active {
+            background: #16a34a;
+            width: 32px;
+            border-radius: 6px;
+        }
+        .dot:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="min-h-screen" style="background: linear-gradient(to bottom, #dbeafe 0%, #e0e7ff 50%, #faf5ff 100%);">
+    <!-- Header -->
+    <header class="relative py-12 overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #8b5cf6 100%);">
+        <!-- 裝飾元素 -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-4">
+                <p class="text-white text-sm font-bold tracking-wider">🚇 TAOYUAN METRO EXCLUSIVE</p>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-3 drop-shadow-lg">
+                桃園捷運員工限定
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-300 mb-4 drop-shadow-lg">
+                星巴克商品優惠
+            </h2>
+            <div class="inline-block bg-yellow-400 text-blue-900 px-8 py-3 rounded-full text-xl md:text-2xl font-bold shadow-lg">
+                84折含運 · 限時優惠
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <!-- 小劇場輪播區 -->
+        <div class="mb-12 rounded-2xl shadow-lg overflow-hidden relative" style="background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%);">
+            <!-- 背景裝飾圖 -->
+            <div class="absolute top-0 right-0 w-1/3 h-full opacity-5">
+                <img src="https://www.starbucks.com.tw/common/objects/images/shop/banner/small/20251104172427230.jpg" 
+                     alt="裝飾" class="w-full h-full object-cover">
+            </div>
+            <!-- 桃捷裝飾 -->
+            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-md">
+                🚇 桃捷限定
+            </div>
+            <div class="p-8 relative z-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
+                    💭 你是不是也有這些困擾？
+                </h2>
+                
+                <div class="scenario-carousel relative">
+                    <!-- 情境1: 時段限制 -->
+                    <div class="scenario-slide active bg-white rounded-xl p-6 shadow-md mb-4 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                            <img src="https://www.starbucks.com.tw/common/objects/images/shop/banner/small/20251104171808770.jpg" 
+                                 alt="" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex items-start gap-4 relative z-10">
+                            <div class="text-5xl">😫</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-red-600 mb-2">情境一：時段限制好痛苦</h3>
+                                <p class="text-gray-700 mb-2">「早上11點前想喝星巴克，沒有買一送一活動只能原價買...一杯就要150元！」</p>
+                                <p class="text-green-700 font-semibold">✅ 有好友券：隨時都能用，不用等活動時段！</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 情境2: 省錢算計 -->
+                    <div class="scenario-slide bg-white rounded-xl p-6 shadow-md mb-4 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                            <img src="https://www.starbucks.com.tw/common/objects/images/shop/banner/small/2025040810075354.jpg" 
+                                 alt="" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex items-start gap-4 relative z-10">
+                            <div class="text-5xl">💸</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-red-600 mb-2">情境二：原價買好心痛</h3>
+                                <p class="text-gray-700 mb-2">「一杯150元好貴，兩個人一起買一送一才划算...但朋友不一定有空」</p>
+                                <p class="text-green-700 font-semibold">✅ 有好友券：自己一個人也能享受5折，一杯只要75元！</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 情境3: 社交場景 -->
+                    <div class="scenario-slide bg-white rounded-xl p-6 shadow-md mb-4 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                            <img src="https://www.starbucks.com.tw/common/objects/images/shop/banner/small/20251104172614739.jpg" 
+                                 alt="" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex items-start gap-4 relative z-10">
+                            <div class="text-5xl">👥</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-red-600 mb-2">情境三：請客好傷荷包</h3>
+                                <p class="text-gray-700 mb-2">「約朋友喝咖啡想請客，但兩杯300元太貴了...」</p>
+                                <p class="text-green-700 font-semibold">✅ 有好友券：請客只花一杯錢，面子裡子都顧到！</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 情境4: 便利性 -->
+                    <div class="scenario-slide bg-white rounded-xl p-6 shadow-md mb-4 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                            <img src="https://www.starbucks.com.tw/common/objects/images/shop/banner/small/20251104180038944.jpg" 
+                                 alt="" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex items-start gap-4 relative z-10">
+                            <div class="text-5xl">⏰</div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-red-600 mb-2">情境四：活動時間難配合</h3>
+                                <p class="text-gray-700 mb-2">「好不容易有活動，結果時段對不上、要下載APP、還要搶...」</p>
+                                <p class="text-green-700 font-semibold">✅ 有好友券：不限時段、不用APP、直接出示就能用！</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 導航點 -->
+                    <div class="flex justify-center gap-2 mt-4">
+                        <button class="dot active" onclick="showSlide(0)"></button>
+                        <button class="dot" onclick="showSlide(1)"></button>
+                        <button class="dot" onclick="showSlide(2)"></button>
+                        <button class="dot" onclick="showSlide(3)"></button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full inline-block font-bold shadow-lg">
+                        🚇 桃捷員工專屬 · 年曆組附12張好友券，以上困擾通通解決！
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 商品展示 -->
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- 蛋捲商品 -->
+            <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                <!-- 桃捷專屬徽章 -->
+                <div class="absolute top-4 right-4 z-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    🚇 桃捷限定
+                </div>
+                <div class="bg-gray-100 relative">
+                    <img src="https://www.starbucks.com.tw/common/objects/images/cake/2025081115331446.jpg" 
+                         alt="臻選綜合蛋捲禮盒" 
+                         class="w-full h-auto object-cover product-img-main">
+                    <img src="https://www.starbucks.com.tw/common/objects/images/cake/20250811153314249.jpg" 
+                         alt="臻選綜合蛋捲禮盒-內容物" 
+                         class="w-full h-auto object-cover product-img-hover absolute inset-0 opacity-0 transition-opacity duration-300">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">🍪 臻選綜合蛋捲禮盒</h2>
+                    <p class="text-gray-500 mb-4">Assorted Egg Roll</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-3xl font-bold text-green-700">NT$ 487</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">NT$ 580</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        優質雞蛋製成的蛋捲，嚴選 6 種不同口味
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">☕ 咖啡</span>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">🍫 可可</span>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">🍵 紅茶</span>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">🍯 蜂蜜</span>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">🧀 起司</span>
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">🌾 麥麩</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 年曆商品 -->
+            <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                <!-- 桃捷專屬徽章 -->
+                <div class="absolute top-4 right-4 z-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    🚇 桃捷限定
+                </div>
+                <div class="bg-gray-100 relative">
+                    <img src="https://www.starbucks.com.tw/common/objects/images/entertain/20250821143930859.jpg" 
+                         alt="黑26年曆小熊造型包組" 
+                         class="w-full h-auto object-cover product-img-main">
+                    <img src="https://www.starbucks.com.tw/common/objects/images/entertain/20250821144307942.jpg" 
+                         alt="黑26年曆小熊造型包組-細節" 
+                         class="w-full h-auto object-cover product-img-hover absolute inset-0 opacity-0 transition-opacity duration-300">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">📅 黑26年曆小熊造型包組</h2>
+                    <p class="text-gray-500 mb-4">2026 Calendar with Bearista Bear Pouch</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-3xl font-bold text-green-700">NT$ 832</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">NT$ 990</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        精美設計，收藏必備<br>
+                        12 個月完整年曆，附好友券12張
+                    </p>
+                    
+                    <!-- 好友券痛點 -->
+                    <div class="bg-red-50 border-l-4 border-red-400 p-3 mb-4 rounded">
+                        <p class="text-sm text-red-800 font-semibold">💡 好友券超值重點</p>
+                        <p class="text-xs text-red-700 mt-1">11點前沒活動，原價買好貴！<br>好友券<strong>沒限時段</strong>，想用就用＝直接5折！</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">📖 2026年曆</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">🧸 小熊包</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">🎫 好友券×12</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 mt-12 relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="text-white text-sm mb-2">
+                <p class="font-bold mb-1">🚇 桃園捷運員專屬優惠</p>
+                <p class="opacity-80">Taoyuan Metro Employee Exclusive Offer</p>
+            </div>
+            <div class="text-blue-200 text-xs mt-4">
+                © 2025 星巴克商品型錄 · 桃捷限定版
+            </div>
+        </div>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.scenario-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(index) {
+            // 隱藏所有幻燈片
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // 顯示指定幻燈片
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // 自動輪播（每5秒）
+        setInterval(nextSlide, 5000);
+        
+        // 初始化顯示第一張
+        showSlide(0);
+    </script>
+</body>
+</html>
